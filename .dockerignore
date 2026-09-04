@@ -1,0 +1,10 @@
+**/bin/
+**/obj/
+**/.vs/
+**/.vscode/
+.env
+.git/
+.github/
+*.md
+*.user
+*.suo
