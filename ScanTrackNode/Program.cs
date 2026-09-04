@@ -10,9 +10,10 @@ builder.Services.AddSwaggerGen();
 // IHttpClientFactory — används av NodeRegistry och PackageForwarder
 builder.Services.AddHttpClient();
 
-// Ladda stadsgrafen från CSV
+// Ladda stadsgrafen — hämta från registret om möjligt, annars lokalt
+var registryUrl = builder.Configuration["REGISTRY_URL"] ?? "http://localhost:9000";
 var csvPath = Path.Combine(AppContext.BaseDirectory, "data", "cities.csv");
-var graph = GraphLoader.Load(csvPath);
+var graph = await GraphLoader.LoadFromRegistryOrFileAsync(registryUrl, csvPath);
 builder.Services.AddSingleton(new DijkstraService(graph));
 
 builder.Services.AddSingleton<NodeRegistry>();
