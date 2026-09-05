@@ -10,7 +10,7 @@ public class PackageForwarder
     private readonly IHttpClientFactory _factory;
     private readonly ILogger<PackageForwarder> _logger;
 
-    // Hur länge vi väntar på nästa nod innan vi ger upp.
+    // Hur länge vi väntar på nästa nod innan vi ger upp. 10 sekunder
     // Utan timeout kan en hängd nod låsa vår request i minuter.
     private static readonly TimeSpan ForwardTimeout = TimeSpan.FromSeconds(10);
 
